@@ -11,33 +11,29 @@ const renderFilter = (id, count, isChecked = false, isDisabled = false) => {
 
   return `
     <input
-    type="radio"
-    id="filter__${id.toLowerCase().replace(/ /g, `-`)}"
-    class="filter__input visually-hidden"
-    name="filter"
-    ${addChecked(isChecked)}
-    ${addDisabled(isDisabled)}
+      type="radio"
+      id="filter__${id.toLowerCase().replace(/ /g, `-`)}"
+      class="filter__input visually-hidden"
+      name="filter"
+      ${addChecked(isChecked)}
+      ${addDisabled(isDisabled)}
     />
     <label for="filter__${id.toLowerCase().replace(/ /g, `-`)}" class="filter__label">
-    ${id.toUpperCase().replace(/ /g, `-`)} <span class="filter__${id.toLowerCase().replace(/ /g, `-`)}-count">${count}</span>
+      ${id.toUpperCase().replace(/ /g, `-`)} <span class="filter__${id.toLowerCase().replace(/ /g, `-`)}-count">${count}</span>
     </label>
   `;
 };
 
-// const getFilterId = (arr) => arr.forEach((i) => i);
-
 const addFilters = () => {
-  // const filtersHandler = ({el}) => {
-  //   const count = filtersContainer.querySelector(`.${el.id}-count`).textContent;
-  //   addCards(count);
-  // };
-
-  filtersContainer.innerHTML = filters.reduce((acc, curr, i) => {
-    acc += renderFilter(curr, getRandomInt(0, 100), i === 2);
+  const filtersHandler = (evt) => {
+    const count = filtersContainer.querySelector(`.${evt.target.id}-count`).textContent;
+    addCards(count);
+  };
+  filtersContainer.innerHTML = filters.reduce((acc, item, index) => {
+    acc += renderFilter(item, getRandomInt(0, 20), index === 2);
     return acc;
   }, ``);
-
-  // filtersContainer.addEventListener(`click`, filtersHandler);
+  filtersContainer.addEventListener(`click`, filtersHandler);
 };
 
 addFilters();
