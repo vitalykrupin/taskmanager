@@ -18,7 +18,6 @@ const renderFilter = (id, count, isChecked = false, isDisabled = false) => {
     ${addChecked(isChecked)}
     ${addDisabled(isDisabled)}
     />
-
     <label for="filter__${id.toLowerCase().replace(/ /g, `-`)}" class="filter__label">
     ${id.toUpperCase().replace(/ /g, `-`)} <span class="filter__${id.toLowerCase().replace(/ /g, `-`)}-count">${count}</span>
     </label>
