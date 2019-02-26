@@ -304,8 +304,7 @@ const renderCard = ({type, color, text}) => {
                 <label
                   for="color-pink-2"
                   class="card__color card__color--pink"
-                  >pink</label
-                >
+                >pink</label>
               </div>
             </div>
           </div>
