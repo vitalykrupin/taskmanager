@@ -1,5 +1,6 @@
 import makeCard from './make-card';
 import makeFilter from './make-filter';
+import getData from './data';
 
 const filters = [`All`, `Overdue`, `Today`, `Favorites`, `Repeating`, `Tags`, `Archive`];
 const filtersContainer = document.querySelector(`.main__filter`);
@@ -20,22 +21,12 @@ const addFilters = () => {
 
 addFilters();
 
-const getRandomType = () => [` card--repeat`, ` card--deadline`, ``][getRandomInt(0, 2)];
-const getRandomColor = () => [`black`, `pink`, `yellow`, `blue`][getRandomInt(0, 3)];
-const getText = () => `This is example of new task, you can add picture, set date and time, add tags.`;
-
-const addCards = (count) => {
-  let markup = ``;
-
-  for (let i = 0; i < count; i++) {
-    markup += makeCard({
-      type: getRandomType(),
-      color: getRandomColor(),
-      text: getText()
-    });
-  }
-
-  cardsContainer.innerHTML = markup;
+const addCards = (dest, count = 0) => {
+  const cards = new Array(count)
+    .fill(``)
+    .map(() => makeCard(getData()))
+    .join(``);
+  dest.insertAdjacentHTML(`beforeend`, cards);
 };
 
-addCards(5);
+addCards(cardsContainer, 7);

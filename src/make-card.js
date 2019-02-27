@@ -1,5 +1,5 @@
-export default ({type, color, text}) => `
-  <article class="card ${type} card--${color}">
+export default (data) => `
+  <article class="card ${data.type} card--${data.color[Math.floor(Math.random) * 5]}">
     <form class="card__form" method="get">
       <div class="card__inner">
         <div class="card__control">
@@ -27,7 +27,7 @@ export default ({type, color, text}) => `
               class="card__text"
               placeholder="Start typing your text here..."
               name="text"
-            >${text}</textarea
+            >${data.title}</textarea
             >
           </label>
         </div>
@@ -37,7 +37,7 @@ export default ({type, color, text}) => `
               <button class="card__date-deadline-toggle" type="button">
                 date: <span class="card__date-status">no</span>
               </button>
-              <fieldset class="card__date-deadline" disabled>
+              <fieldset class="card__date-deadline">
                 <label class="card__input-deadline-wrap">
                   <input
                     class="card__date"
@@ -50,7 +50,7 @@ export default ({type, color, text}) => `
                   <input
                     class="card__time"
                     type="text"
-                    placeholder="11:15 PM"
+                    placeholder="${data.dueDate}"
                     name="time"
                   />
                 </label>

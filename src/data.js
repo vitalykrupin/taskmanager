@@ -1,4 +1,9 @@
-export default {
+export default () => ({
+  type: [
+    ` card--repeat`,
+    ` card--deadline`,
+    ``
+  ][Math.floor(Math.random() * 3)],
   title: [
     `Изучить теорию`,
     `Сделать домашку`,
@@ -13,13 +18,13 @@ export default {
     `keks`
   ]),
   picture: `http://picsum.photos/100/100?r=${Math.random()}`,
-  color: new Set([
+  color: [
     `black`,
     `yellow`,
     `blue`,
     `green`,
     `pink`
-  ]),
+  ],
   repeatingDays: {
     'mo': true,
     'tu': false,
@@ -31,4 +36,4 @@ export default {
   },
   isFavotite: true,
   isDone: false
-};
+});
