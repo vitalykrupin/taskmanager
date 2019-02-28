@@ -1,5 +1,5 @@
 export default (data) => `
-  <article class="card ${data.type} card--${data.color[Math.floor(Math.random) * 5]}">
+  <article class="card ${data.type} card--${data.color[Math.floor(Math.random()) * 5]}">
     <form class="card__form" method="get">
       <div class="card__inner">
         <div class="card__control">

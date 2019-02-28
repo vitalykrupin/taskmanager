@@ -2,8 +2,9 @@ export default () => ({
   type: [
     ` card--repeat`,
     ` card--deadline`,
-    ``
-  ][Math.floor(Math.random() * 3)],
+    ` card--edit`,
+    ` `
+  ][Math.floor(Math.random() * 4)],
   title: [
     `Изучить теорию`,
     `Сделать домашку`,
