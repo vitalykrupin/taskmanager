@@ -1,6 +1,6 @@
 import {createElement} from './utils';
 
-export class Task {
+export default class Task {
   constructor(data) {
     this._title = data.title;
     this._tags = data.tags;
