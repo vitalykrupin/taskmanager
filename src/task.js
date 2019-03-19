@@ -83,6 +83,16 @@ export default class Task {
     `.trim();
   }
 
+  bind() {
+    this._element.querySelector(`.card__btn--edit`)
+        .addEventListener(`click`, this._onEditButtonClick.bind(this));
+  }
+
+  unbind() {
+    this._element.querySelector(`.card__btn--edit`)
+      .removeEventListener(`click`, this._onEditButtonClick.bind(this));
+  }
+
   render() {
     this._element = createElement(this.template);
     this.bind();
@@ -92,15 +102,5 @@ export default class Task {
   unrender() {
     this.unbind();
     this._element = null;
-  }
-
-  bind() {
-    this._element.querySelector(`.card__form`)
-        .addEventListener(`submit`, this._onEditButtonClick.bind(this));
-  }
-
-  unbind() {
-    this._element.querySelector(`.card__form`)
-      .removeEventListener(`submit`, this._onEditButtonClick.bind(this));
   }
 }

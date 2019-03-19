@@ -1,7 +1,4 @@
 export default (id, count, isChecked = false, isDisabled = false) => {
-  // const addDisabled = (value) => value ? `disabled` : ``;
-  // const addChecked = (value) => value ? `checked` : ``;
-
   return `
     <input
       type="radio"

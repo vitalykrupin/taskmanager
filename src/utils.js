@@ -3,3 +3,5 @@ export const createElement = (template) => {
   newElement.innerHTML = template;
   return newElement.firstChild;
 };
+
+export const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
