@@ -18,7 +18,9 @@ export default class Task extends Component {
   }
 
   _onEditButtonClick() {
-    typeof this._onEdit === `function` && this._onEdit();
+    if (typeof this._onEdit === `function`) {
+      this._onEdit();
+    }
   }
 
   set onEdit(fn) {

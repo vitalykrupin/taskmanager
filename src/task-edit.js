@@ -20,7 +20,9 @@ export default class TaskEdit extends Component {
 
   _onSubmitButtonClick(evt) {
     evt.preventDefault();
-    typeof this._onSubmit === `function` && this._onSubmit();
+    if (typeof this._onSubmit === `function`) {
+      this._onSubmit();
+    }
   }
 
   set onSubmit(fn) {
