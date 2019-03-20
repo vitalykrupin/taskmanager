@@ -1,16 +1,16 @@
-import {createElement} from './utils';
+import Component from './component';
 
-export default class Task {
+export default class Task extends Component {
   constructor(data) {
+    super();
     this._title = data.title;
+    this._dueDate = data.dueDate;
     this._tags = data.tags;
     this._picture = data.picture;
-    this._dueDate = data.dueDate;
     this._repeatingDays = data.repeatingDays;
-    this._state = {
-      isEdit: false
-    };
     this._onEdit = null;
+
+    this._onEditButtonClick = this._onEditButtonClick.bind(this);
   }
 
   _isRepeated() {
@@ -18,17 +18,15 @@ export default class Task {
   }
 
   _onEditButtonClick() {
-    if (typeof this._onEdit === `function`) {
-      this._onEdit();
-    }
-  }
-
-  get element() {
-    return this._element;
+    typeof this._onEdit === `function` && this._onEdit();
   }
 
   set onEdit(fn) {
     this._onEdit = fn;
+  }
+
+  get element() {
+    return this._element;
   }
 
   get template() {
@@ -85,22 +83,11 @@ export default class Task {
 
   bind() {
     this._element.querySelector(`.card__btn--edit`)
-        .addEventListener(`click`, this._onEditButtonClick.bind(this));
+        .addEventListener(`click`, this._onEditButtonClick);
   }
 
   unbind() {
     this._element.querySelector(`.card__btn--edit`)
-      .removeEventListener(`click`, this._onEditButtonClick.bind(this));
-  }
-
-  render() {
-    this._element = createElement(this.template);
-    this.bind();
-    return this._element;
-  }
-
-  unrender() {
-    this.unbind();
-    this._element = null;
+      .removeEventListener(`click`, this._onEditButtonClick);
   }
 }
