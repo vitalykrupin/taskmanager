@@ -25,10 +25,6 @@ export default class Task extends Component {
     this._onEdit = fn;
   }
 
-  get element() {
-    return this._element;
-  }
-
   get template() {
     return `
       <article class="card card--${this._color} ${this._isRepeated() ? `card--repeat` : ``}">
