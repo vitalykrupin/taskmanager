@@ -4,14 +4,19 @@ export default class TaskEdit extends Component {
   constructor(data) {
     super();
     this._title = data.title;
-    this._dueDate = data.dueDate;
     this._tags = data.tags;
-    this._picture = data.picture;
     this._repeatingDays = data.repeatingDays;
+    this._color = data.color;
+    this._dueDate = data.dueDate;
 
     this._onSubmitButtonClick = this._onSubmitButtonClick.bind(this);
-
     this._onSubmit = null;
+
+    this._state.isDate = false;
+    this._state.isRepeated = false;
+
+    this._onChangeDate = this._onChangeDate.bind(this);
+    this._onChangeRepeated = this._onChangeRepeated.bind(this);
   }
 
   _isRepeated() {
@@ -24,6 +29,10 @@ export default class TaskEdit extends Component {
       this._onSubmit();
     }
   }
+
+  _onChangeDate() {}
+
+  _onChangeRepeated() {}
 
   set onSubmit(fn) {
     this._onSubmit = fn;
@@ -87,22 +96,22 @@ export default class TaskEdit extends Component {
                 </div>
                 <div class="card__hashtag">
                   <div class="card__hashtag-list">
-                    ${[...this._tags].splice(Math.floor(Math.random() * 6), 3).map((it) => `
+                    ${[...this._tags].map((tag) => `
                       <span class="card__hashtag-inner">
                         <input
                           type="hidden"
                           name="hashtag"
-                          value="repeat"
+                          value="${tag}"
                           class="card__hashtag-hidden-input"
                         />
                         <button type="button" class="card__hashtag-name">
-                          #${it}
+                          #${tag}
                         </button>
                         <button type="button" class="card__hashtag-delete">
                           delete
                         </button>
                       </span>
-                    `).join(``)}
+                    `.trim()).join(``)}
                   </div>
                   <label>
                     <input type="text" class="card__hashtag-input" name="hashtag-input" placeholder="Type new hashtag here" />
