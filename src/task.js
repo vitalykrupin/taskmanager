@@ -1,4 +1,5 @@
 import Component from './component';
+import {Color} from './data';
 
 export default class Task extends Component {
   constructor(data) {
@@ -29,7 +30,7 @@ export default class Task extends Component {
 
   get template() {
     return `
-      <article class="card card--${this._color} ${this._isRepeated() ? `card--repeat` : ``}">
+      <article class="card ${Color[this._color]} ${this._isRepeated() ? `card--repeat` : ``}">
         <form class="card__form" method="get">
           <div class="card__inner">
             <div class="card__control">
@@ -53,22 +54,22 @@ export default class Task extends Component {
               <div class="card__details">
                 <div class="card__hashtag">
                   <div class="card__hashtag-list">
-                    ${[...this._tags].splice(Math.floor(Math.random() * 6), 3).map((it) => `
+                    ${[...this._tags].map((tag) => `
                       <span class="card__hashtag-inner">
                         <input
                           type="hidden"
                           name="hashtag"
-                          value="repeat"
+                          value="${tag}"
                           class="card__hashtag-hidden-input"
                         />
                         <button type="button" class="card__hashtag-name">
-                          #${it}
+                          #${tag}
                         </button>
                         <button type="button" class="card__hashtag-delete">
                           delete
                         </button>
                       </span>
-                    `).join(``)}
+                    `.trim()).join(``)}
                   </div>
                 </div>
               </div>
@@ -87,5 +88,12 @@ export default class Task extends Component {
   unbind() {
     this._element.querySelector(`.card__btn--edit`)
       .removeEventListener(`click`, this._onEditButtonClick);
+  }
+
+  update(data) {
+    this._title = data.title;
+    this._tags = data.tags;
+    this._color = data.color;
+    this._repeatingDays = data.repeatingDays;
   }
 }
