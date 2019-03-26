@@ -1,4 +1,4 @@
-export default () => ({
+export const task = {
   type: [
     ` card--repeat`,
     ` card--deadline`,
@@ -37,4 +37,12 @@ export default () => ({
   },
   isFavotite: true,
   isDone: false
-});
+};
+
+export const Color = {
+  blue: `card--blue`,
+  black: `card--black`,
+  yellow: `card--yellow`,
+  green: `card--green`,
+  pink: `card--pink`,
+};
