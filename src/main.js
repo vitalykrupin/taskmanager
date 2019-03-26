@@ -1,7 +1,7 @@
 import Task from './task';
 import TaskEdit from './task-edit';
 import makeFilter from './make-filter';
-import getData from './data';
+import {task} from './data';
 import {getRandomInt} from './utils';
 
 const filters = [`All`, `Overdue`, `Today`, `Favorites`, `Repeating`, `Tags`, `Archive`];
@@ -21,29 +21,35 @@ const addFilters = () => {
 };
 
 const createTask = (data) => {
-  const task = new Task(data);
-  const taskEdit = new TaskEdit(data);
+  const taskComponent = new Task(data);
+  const taskEditComponent = new TaskEdit(data);
 
-  taskBoard.appendChild(task.render());
+  taskBoard.appendChild(taskComponent.render());
 
-  task.onEdit = () => {
-    taskEdit.render();
-    taskBoard.replaceChild(taskEdit.element, task.element);
-    task.unrender();
+  taskComponent.onEdit = () => {
+    taskEditComponent.render();
+    taskBoard.replaceChild(taskEditComponent.element, taskComponent.element);
+    taskComponent.unrender();
   };
 
+  taskEditComponent.onSubmit = (newObject) => {
+    task.title = newObject.title;
+    task.tags = newObject.tags;
+    task.color = newObject.color;
+    task.repeatingDays = newObject.repeatingDays;
+    task.dueDate = newObject.dueDate;
 
-  taskEdit.onSubmit = () => {
-    task.render();
-    taskBoard.replaceChild(task.element, taskEdit.element);
-    taskEdit.unrender();
+    taskComponent.update(task);
+    taskComponent.render();
+    taskBoard.replaceChild(taskComponent.element, taskEditComponent.element);
+    taskEditComponent.unrender();
   };
 };
 
-const addTasks = (count = 8) => {
+const addTasks = (count = 1) => {
   taskBoard.innerHTML = ``;
   for (let i = 0; i < count; i++) {
-    createTask(getData());
+    createTask(task);
   }
 };
 
