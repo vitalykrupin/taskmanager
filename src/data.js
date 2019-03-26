@@ -27,12 +27,12 @@ export const task = {
     `pink`
   ],
   repeatingDays: {
-    'mo': true,
+    'mo': false,
     'tu': false,
-    'we': true,
+    'we': false,
     'th': false,
     'fr': false,
-    'sa': true,
+    'sa': false,
     'su': false,
   },
   isFavotite: true,
