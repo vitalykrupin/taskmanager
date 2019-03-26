@@ -37,6 +37,7 @@ export default class TaskEdit extends Component {
     };
 
     const taskEditMapper = TaskEdit.createMapper(entry);
+
     for (const pair of formData.entries()) {
       const [property, value] = pair;
       if (taskEditMapper[property]) {
@@ -241,11 +242,21 @@ export default class TaskEdit extends Component {
 
   static createMapper(target) {
     return {
-      hashtag: (value) => target.tags.add(value),
-      text: (value) => target.title = value,
-      color: (value) => target.color = value,
-      repeat: (value) => target.repeatingDays[value] = true,
-      date: (value) => target.dueDate = value,
+      hashtag: (value) => {
+        target.tags.add(value);
+      },
+      text: (value) => {
+        target.title = value;
+      },
+      color: (value) => {
+        target.color = value;
+      },
+      repeat: (value) => {
+        target.repeatingDays[value] = true;
+      },
+      date: (value) => {
+        target.dueDate = value;
+      },
     };
   }
 }
