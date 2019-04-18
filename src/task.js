@@ -10,7 +10,12 @@ export default class Task extends Component {
     this._picture = data.picture;
     this._repeatingDays = data.repeatingDays;
     this._onEdit = null;
-
+    this._time = data.time;
+    this._color = data.color;
+    this._state = {
+      isEdit: false
+    };
+    this._onEdit = null;
     this._onEditButtonClick = this._onEditButtonClick.bind(this);
   }
 
@@ -98,5 +103,7 @@ export default class Task extends Component {
     this._tags = data.tags;
     this._color = data.color;
     this._repeatingDays = data.repeatingDays;
+    this._dueDate = data.dueDate;
+    this._time = data.time;
   }
 }
