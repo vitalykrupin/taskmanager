@@ -44,7 +44,6 @@ export default class TaskEdit extends Component {
         taskEditMapper[property](value);
       }
     }
-
     return entry;
   }
 

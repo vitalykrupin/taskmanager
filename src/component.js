@@ -5,9 +5,7 @@ export default class Component {
     if (new.target === Component) {
       throw new Error(`Can't instantiate Component, only concrete one.`);
     }
-
     this._element = null;
-    this._state = {};
   }
 
   get element() {
